@@ -1,186 +1,280 @@
 <!DOCTYPE html>
-<html lang="th"><head><meta charset="utf-8">
+<html lang="th">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ตีซอมบี้ Present Progressive</title>
-<link href="https://fonts.googleapis.com/css2?family=Mali:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#fff4c2;--card:#fff;--ink:#2b2350;--pri:#7c4dff;--bad:#ff4d4d;--sky:#8fe3ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2a2250;--card:#3a2f6b;--ink:#fff6d6;--sky:#4b6fb8}}
-:root[data-theme="dark"]{--bg:#2a2250;--card:#3a2f6b;--ink:#fff6d6;--sky:#4b6fb8}
-*{box-sizing:inherit}html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;font-family:'Mali','Tahoma',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}
-main{max-width:760px;margin:0 auto;padding:14px}
-.card{background:var(--card);border-radius:22px;padding:20px;box-shadow:0 6px 0 rgba(0,0,0,.15);margin-bottom:14px}
-h1{margin:0 0 4px;font-size:30px;text-align:center}h2{margin:0 0 10px}
-.sub{text-align:center;opacity:.8;margin-bottom:14px}
-label{display:block;font-weight:700;margin:10px 0 4px}
-input,select{width:100%;padding:12px;border-radius:14px;border:3px solid #b9a7ff;font:inherit;font-size:17px;background:var(--card);color:var(--ink)}
+:root{--bg1:#5b2ea6;--bg2:#2b8be0;--card:#fff;--ink:#2a1a4a;--mut:#6b5b8a;--acc:#ff7a1a;--ok:#22b35e;--bad:#e53935;--line:#e3d9f5;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--card:#241a3d;--ink:#f3ecff;--mut:#b9a8dd;--line:#3d2f63}}
+:root[data-theme="dark"]{--card:#241a3d;--ink:#f3ecff;--mut:#b9a8dd;--line:#3d2f63}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;font-family:"Kanit","Noto Sans Thai",system-ui,sans-serif;color:var(--ink);background:linear-gradient(160deg,var(--bg1),var(--bg2));background-attachment:fixed}
+.wrap{max-width:760px;margin:0 auto;padding:14px}
+.card{background:var(--card);border-radius:22px;padding:20px;box-shadow:0 8px 0 rgba(0,0,0,.18)}
+h1{margin:0 0 4px;font-size:28px;text-align:center}
+.sub{text-align:center;color:var(--mut);margin:0 0 14px}
+label{display:block;font-weight:600;margin:10px 0 4px;font-size:15px}
+input,select{width:100%;padding:11px 12px;border-radius:12px;border:2px solid var(--line);font:inherit;background:var(--card);color:var(--ink)}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-button{font:inherit;font-weight:700;font-size:19px;border:0;border-radius:18px;padding:13px 22px;background:var(--pri);color:#fff;box-shadow:0 5px 0 rgba(0,0,0,.25);cursor:pointer;margin-top:12px}
+button{font:inherit;font-weight:800;border:0;border-radius:16px;padding:13px 22px;font-size:18px;color:#fff;background:var(--acc);box-shadow:0 5px 0 rgba(0,0,0,.25);cursor:pointer}
 button:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.25)}
-button.green{background:#1fa95b}button.orange{background:#ff8a1f}button.ghost{background:#8b83b8}
-.full{width:100%}.hide{display:none!important}.center{text-align:center}
-.hud{display:flex;justify-content:space-between;gap:6px;font-weight:700;font-size:18px;margin-bottom:8px}
-.hud span{background:var(--card);padding:6px 12px;border-radius:14px}
-.bar{height:12px;background:rgba(0,0,0,.15);border-radius:8px;overflow:hidden;margin-bottom:10px}.bar i{display:block;height:100%;background:linear-gradient(90deg,#ff5e5e,#ffd23f);width:100%;transition:width 1s linear}
-.q{background:#fff;color:#2b2350;border:4px solid var(--pri);border-radius:20px;padding:14px;text-align:center;font-size:clamp(22px,5.5vw,34px);font-weight:700;margin-bottom:10px}
-.q b{color:#e8318a;border-bottom:4px dashed #e8318a;padding:0 10px}
-.field{position:relative;background:linear-gradient(var(--sky) 0 25%,#7ed957 25%);border-radius:22px;padding:14px 10px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px 6px}
-.field.shake{animation:sh .35s;background:linear-gradient(#ff8c8c 0 25%,#ff5e5e 25%)}
-@keyframes sh{0%,100%{transform:translateX(0)}20%{transform:translateX(-10px)}40%{transform:translateX(10px)}60%{transform:translateX(-8px)}80%{transform:translateX(8px)}}
-.hole{position:relative;height:150px;overflow:hidden}
-.dirt{position:absolute;bottom:0;left:6%;right:6%;height:34px;background:#5b3a1e;border-radius:50%;box-shadow:inset 0 8px 0 #3b2412;z-index:3}
-.z{position:absolute;bottom:14px;left:0;right:0;display:flex;flex-direction:column;align-items:center;transform:translateY(120%);transition:transform .28s cubic-bezier(.3,1.6,.5,1);z-index:2;cursor:pointer;user-select:none;touch-action:manipulation}
-.z.up{transform:translateY(0)}
-.z.hit{transform:translateY(120%);transition:transform .15s}
-.word{background:#fff;color:#2b2350;border:3px solid #2b2350;border-radius:14px;padding:2px 10px;font-weight:700;font-size:clamp(17px,4.6vw,26px);margin-bottom:-4px;z-index:2;white-space:nowrap}
-.z svg{width:78px;height:78px}
-.spark{position:absolute;pointer-events:none;font-size:26px;z-index:9;animation:sp .8s forwards}
-@keyframes sp{to{transform:translate(var(--x),var(--y)) scale(.3) rotate(200deg);opacity:0}}
-.pts{position:absolute;pointer-events:none;font-weight:700;font-size:30px;z-index:9;animation:fl .8s forwards}
-@keyframes fl{to{transform:translateY(-60px);opacity:0}}
-.big{font-size:60px;font-weight:700;color:var(--pri)}
-table{width:100%;border-collapse:collapse;font-size:16px}th,td{padding:8px;border-bottom:2px solid rgba(124,77,255,.25);text-align:left}
-th{background:rgba(124,77,255,.18)}.scroll{overflow-x:auto}
-.note{font-size:14px;opacity:.75}
-</style></head><body><main>
+button.alt{background:#6a4bd8}button.g{background:var(--ok)}
+.full{width:100%;margin-top:16px}
+.err{color:var(--bad);font-weight:600;min-height:20px;margin-top:8px;text-align:center}
+.links{display:flex;justify-content:center;gap:14px;margin-top:12px;font-size:14px}
+.links a{color:var(--mut);cursor:pointer;text-decoration:underline}
+.hidden{display:none!important}
+.hud{display:flex;justify-content:space-between;gap:8px;margin-bottom:8px}
+.pill{background:var(--card);border-radius:14px;padding:6px 12px;font-weight:800;font-size:17px;box-shadow:0 4px 0 rgba(0,0,0,.18);white-space:nowrap}
+.bar{height:12px;background:rgba(255,255,255,.35);border-radius:8px;overflow:hidden;margin-bottom:10px}
+.bar i{display:block;height:100%;background:#ffd23f;width:100%;transition:width .25s linear}
+.q{background:var(--card);border-radius:18px;padding:12px 14px;text-align:center;margin-bottom:12px;box-shadow:0 5px 0 rgba(0,0,0,.18)}
+.q small{color:var(--mut);display:block}
+.q b{font-size:clamp(22px,5.5vw,32px);line-height:1.3}
+.q b u{display:inline-block;min-width:90px;border-bottom:4px dashed var(--acc);text-decoration:none;color:var(--acc)}
+.field{display:grid;grid-template-columns:repeat(3,1fr);gap:8px 8px;padding-top:6px}
+.hole{position:relative;height:clamp(150px,34vw,200px);overflow:hidden;border-radius:0 0 24px 24px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+.dirt{position:absolute;left:4%;right:4%;bottom:0;height:46px;background:#6b3f1d;border-radius:50%;box-shadow:inset 0 10px 0 #3b200d}
+.zomb{position:absolute;left:0;right:0;bottom:16px;text-align:center;transform:translateY(120%);transition:transform .28s cubic-bezier(.3,1.6,.5,1)}
+.zomb.up{transform:translateY(0)}
+.zomb .w{display:inline-block;background:#fff;color:#2a1a4a;border:3px solid #2a1a4a;border-radius:14px;padding:3px 10px;font-weight:800;font-size:clamp(16px,4.2vw,24px);line-height:1.15;max-width:96%;box-shadow:0 3px 0 rgba(0,0,0,.25)}
+.zomb .z{display:block;font-size:clamp(54px,13vw,84px);line-height:1;filter:drop-shadow(0 4px 0 rgba(0,0,0,.25))}
+.hole.hitbad .zomb{animation:shake .35s}.hole.hitbad .w{background:#ff5a52;color:#fff}
+@keyframes shake{25%{transform:translate(-9px,0)}50%{transform:translate(9px,0)}75%{transform:translate(-6px,0)}}
+.flash{position:fixed;inset:0;background:rgba(229,57,53,.35);pointer-events:none;opacity:0}.flash.on{animation:fl .35s}
+@keyframes fl{0%{opacity:1}100%{opacity:0}}
+.star{position:fixed;pointer-events:none;font-size:26px;animation:pop .7s ease-out forwards;z-index:9}
+@keyframes pop{to{transform:translate(var(--dx),var(--dy)) scale(.4) rotate(200deg);opacity:0}}
+.big{font-size:64px;text-align:center}
+.score{font-size:46px;font-weight:800;text-align:center;color:var(--acc)}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:left}
+.tw{overflow-x:auto}
+</style>
+</head>
+<body>
+<div class="flash" id="flash"></div>
+<div class="wrap">
 
-<section id="login" class="card">
-<h1>🧟 ตีซอมบี้ Present Progressive</h1>
-<div class="sub">เลือกคำตอบที่ถูกต้อง แล้วตีซอมบี้ให้ได้!</div>
-<label>โรงเรียน</label><select id="school"></select>
-<div class="row"><div><label>ชื่อ</label><input id="fn"></div><div><label>นามสกุล</label><input id="ln"></div></div>
-<div class="row"><div><label>ชั้นเรียน (เช่น ป.5/1)</label><input id="cls"></div><div><label>เลขที่</label><input id="no" inputmode="numeric"></div></div>
-<div id="err" class="note" style="color:var(--bad)"></div>
-<button class="full green" id="goStart">🎮 เข้าสู่เกม</button>
-<button class="full ghost" id="goTeacher">👩‍🏫 สำหรับครู: ดูคะแนน</button>
-</section>
+<!-- LOGIN -->
+<div class="card" id="vLogin">
+  <div class="big">🧟‍♂️🔨</div>
+  <h1>ตีซอมบี้ Present Progressive</h1>
+  <p class="sub">Zombie Hunter – English Grammar Adventure</p>
+  <div class="row"><div><label>ชื่อ</label><input id="fn" autocomplete="off"></div><div><label>นามสกุล</label><input id="ln" autocomplete="off"></div></div>
+  <div class="row"><div><label>ชั้นเรียน</label><input id="cl" placeholder="เช่น ป.6/1" autocomplete="off"></div><div><label>เลขที่</label><input id="no" inputmode="numeric" autocomplete="off"></div></div>
+  <label>โรงเรียนสารสาสน์</label><select id="sc"></select>
+  <div class="err" id="lerr"></div>
+  <button class="full" id="bStart">เริ่มเล่น 🎮</button>
+  <div class="links"><a id="bRules">วิธีเล่น</a><a id="bTeacher">สำหรับครู</a></div>
+  <div id="rules" class="hidden" style="margin-top:12px;font-size:14px;color:var(--mut);line-height:1.6">
+    เลือกเติมคำที่ถูกต้องในประโยค แล้วคลิกตีซอมบี้ที่ถือคำตอบนั้น • ตีถูก +10 • ตีผิด −5 • ด่าน 1 มี 12 ข้อ ด่าน 2 มี 10 ข้อ (คละรูปแบบประโยค) • ด่านละ 120 วินาที • ผ่านด่าน 1 แล้วกดปุ่มไปด่าน 2 • คะแนนที่เก็บเต็ม 22 (ตอบถูกตั้งแต่ครั้งแรกข้อละ 1 คะแนน) • เล่นซ้ำได้ ระบบเก็บคะแนนล่าสุด
+  </div>
+</div>
 
-<section id="menu" class="card hide center">
-<h1>สวัสดี <span id="hi"></span>!</h1>
-<div class="sub">คะแนนเต็ม 10 (ด่าน 1 = 5 | ด่าน 2 = 5) · ด่านละ 120 วินาที · ตีถูก +10 ตีผิด −5</div>
-<div class="note" id="last"></div>
-<button class="full green" id="s1">▶ ด่านที่ 1: ซอมบี้ในภาพ (12 ข้อ)</button>
-<button class="full orange hide" id="s2">⚔ ด่านที่ 2: บอสซูเปอร์วายร้าย (10 ประโยค)</button>
-<div class="note" id="lockNote">ต้องผ่านด่านที่ 1 ก่อน (ตอบถูกอย่างน้อย 6 จาก 12 ข้อ) จึงจะเลือกด่านที่ 2 ได้</div>
-<button class="ghost" id="logout">ออก</button>
-</section>
+<!-- GAME -->
+<div id="vGame" class="hidden">
+  <div class="hud"><div class="pill" id="hStage">ด่าน 1</div><div class="pill" id="hScore">⭐ 0</div><div class="pill" id="hTime">⏱ 120</div></div>
+  <div class="bar"><i id="tbar"></i></div>
+  <div class="q"><small id="qhint">เลือกคำที่ถูกต้องมาเติม</small><b id="qtext"></b></div>
+  <div class="field" id="field"></div>
+</div>
 
-<section id="game" class="hide">
-<div class="hud"><span id="lv"></span><span>⏱ <b id="time">120</b></span><span>⭐ <b id="score">0</b></span><span id="prog"></span></div>
-<div class="bar"><i id="bar"></i></div>
-<div class="q" id="q"></div>
-<div class="field" id="field"></div>
-</section>
+<!-- STAGE INTRO / OVER -->
+<div class="card hidden" id="vStage"><div class="big">🦸</div><h1 id="stT"></h1><p class="sub" id="stD"></p><button class="full g" id="bGo">ลุยเลย!</button></div>
+<div class="card hidden" id="vOver">
+  <div class="big">🏁</div><h1>Game Over</h1>
+  <div class="score" id="oScore"></div>
+  <p class="sub" id="oSub"></p>
+  <p class="sub" id="oSave"></p>
+  <button class="full" id="bAgain">เล่นใหม่ 🔄</button>
+</div>
 
-<section id="result" class="card hide center">
-<h2 id="rt"></h2><div class="big" id="rs"></div><div id="rd"></div>
-<button class="full orange hide" id="to2">⚔ ไปด่านที่ 2</button>
-<button class="full green" id="again">🔁 เล่นใหม่</button>
-<button class="full ghost" id="toMenu">หน้าเมนู</button>
-</section>
+<div class="card hidden" id="vClear"><div class="big">🎉</div><h1>ผ่านด่านที่ 1!</h1><p class="sub" id="cSub"></p><button class="full g" id="bNext">ไปด่านที่ 2 ➡️</button></div>
+<!-- TEACHER -->
+<div class="card hidden" id="vDash">
+  <h1>📊 Teacher Dashboard</h1>
+  <label>เลือกโรงเรียน</label><select id="fs"></select>
+  <p class="sub" id="dInfo" style="margin-top:10px"></p>
+  <div class="tw"><table><thead><tr><th>ชั้น</th><th>เลขที่</th><th>ชื่อ-นามสกุล</th><th>คะแนนล่าสุด</th><th>เล่นล่าสุด</th></tr></thead><tbody id="tb"></tbody></table></div>
+  <div class="links"><a id="bBack2">← กลับหน้าแรก</a></div>
+</div>
+</div>
 
-<section id="teacher" class="card hide">
-<h2>👩‍🏫 คะแนนนักเรียน</h2>
-<label>เลือกโรงเรียน</label><select id="tschool"><option value="">-- เลือกโรงเรียน --</option></select>
-<div id="tbl" class="scroll" style="margin-top:10px"></div>
-<button class="ghost" id="tback">← กลับ</button>
-</section>
-</main>
 <script>
-const SCHOOLS=["โรงเรียนสารสาสน์วิเทศสุวรรณภูมิ","โรงเรียนสารสาสน์วิเทศสุราษฎร์ธานี","โรงเรียนสารสาสน์วิเทศชลบุรี","โรงเรียนสารสาสน์วิเทศบูรพา","โรงเรียนสารสาสน์วิเทศเพชรบุรี","โรงเรียนสารสาสน์วิเทศน์ออนซี"];
-const L1=[
-["The clowns ___ laughing.","are",["is","am","isn't"]],
-["Dad is ___ a hot dog.","eating",["roaring","crying","flying"]],
-["The lion is ___.","roaring",["clapping","standing","drinking"]],
-["The seal is ___ with a ball.","playing",["riding","brushing","lying"]],
-["The crowd ___ clapping.","is",["are","am","aren't"]],
-["The elephant is ___ on two legs.","standing",["flying","crying","eating"]],
-["The baby is ___.","crying",["laughing","riding","roaring"]],
-["The man is ___ a kite.","flying",["playing","lying","drinking"]],
-["The zebras ___ drinking water.","are",["is","am","isn't"]],
-["The family is ___ their bikes.","riding",["brushing","eating","clapping"]],
-["The old man is ___ on the sofa.","lying",["standing","flying","roaring"]],
-["The family members ___ brushing their teeth.","are",["is","am","isn't"]]];
-const L2=[
-["She ___ wearing a blue dress.","is",["are","am","isn't"]],
-["They ___ eating ice cream.","are",["is","am","isn't"]],
-["I ___ doing my homework now.","am",["is","are","aren't"]],
-["Nick and I ___ shopping for new clothes.","are",["is","am","isn't"]],
-["It ___ raining today.","isn't",["aren't","am not","don't"]],
-["I ___ learning German.","am not",["isn't","aren't","not am"]],
-["The two boys ___ painting a picture.","aren't",["isn't","am not","doesn't"]],
-["___ you sleeping?","Are",["Is","Am","Do"]],
-["Is the sun shining? Yes, it ___.","is",["are","am","does"]],
-["Where ___ they going?","are",["is","am","do"]]];
-const $=id=>document.getElementById(id);
-let me=null,lvl=1,items=[],qi=0,score=0,right=0,left=120,tick=null,popT=null,live=false,res={1:null,2:null},db=null;
-const show=id=>{["login","menu","game","result","teacher"].forEach(s=>$(s).classList.toggle("hide",s!==id))};
-SCHOOLS.forEach(s=>{$("school").add(new Option(s,s));$("tschool").add(new Option(s,s))});
-(async()=>{try{db=await claude.use("db")}catch(e){db=null}})();
-const sid=m=>[m.school,m.cls,m.no,m.fn,m.ln].join("_").replace(/[\/\\\s.#?'"]+/g,"-").slice(0,190);
-function lsGet(){try{return JSON.parse(localStorage.getItem("zh_scores")||"{}")}catch(e){return{}}}
-async function save(rec){let ok=false;
- if(db){try{await db.collection("scores").doc(sid(rec)).set(rec);ok=true}catch(e){}}
- try{const a=lsGet();a[sid(rec)]=rec;localStorage.setItem("zh_scores",JSON.stringify(a))}catch(e){}
- return ok}
-async function load(school){let rows=[];
- if(db){try{const s=await db.collection("scores").where("school","==",school).get();rows=s.docs.map(d=>d.data())}catch(e){}}
- if(!rows.length){rows=Object.values(lsGet()).filter(r=>r.school===school)}
- return rows}
-let ac;const snd=(f,d,t="sine",v=.2,when=0)=>{try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),g=ac.createGain();o.type=t;o.frequency.value=f;g.gain.value=v;o.connect(g);g.connect(ac.destination);const s=ac.currentTime+when;g.gain.exponentialRampToValueAtTime(.001,s+d);o.start(s);o.stop(s+d)}catch(e){}};
-const sOK=()=>{snd(660,.15,"triangle");snd(880,.15,"triangle",.2,.1);snd(1320,.25,"triangle",.2,.2)};
-const sBAD=()=>{snd(150,.3,"sawtooth",.25);snd(100,.3,"square",.15,.1)};
-$("goStart").onclick=()=>{const m={school:$("school").value,fn:$("fn").value.trim(),ln:$("ln").value.trim(),cls:$("cls").value.trim(),no:$("no").value.trim()};
- if(!m.fn||!m.ln||!m.cls||!m.no){$("err").textContent="กรุณากรอกข้อมูลให้ครบทุกช่อง";return}
- $("err").textContent="";me=m;res={1:null,2:null};openMenu()};
-$("goTeacher").onclick=()=>show("teacher");$("tback").onclick=()=>show("login");$("logout").onclick=()=>show("login");
-const total=()=>(res[1]?res[1].s:0)+(res[2]?res[2].s:0);
-function openMenu(){$("hi").textContent=me.fn;const p=res[1]&&res[1].pass;
- $("s2").classList.toggle("hide",!p);$("lockNote").classList.toggle("hide",!!p);
- $("last").textContent=(res[1]||res[2])?"คะแนนรอบนี้: "+total()+" / 10":"";show("menu")}
-$("s1").onclick=()=>start(1);$("s2").onclick=()=>start(2);$("to2").onclick=()=>start(2);
-$("again").onclick=()=>start(lvl);$("toMenu").onclick=openMenu;
-const shuf=a=>a.map(x=>[Math.random(),x]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
-function zombieSVG(){const c=["#7ed957","#9be564","#6fcf97"][Math.random()*3|0];return `<svg viewBox="0 0 100 100"><circle cx="50" cy="52" r="38" fill="${c}" stroke="#2b2350" stroke-width="4"/><path d="M20 30q10-18 30-10 18-10 30 10" fill="#5a3b8c" stroke="#2b2350" stroke-width="4"/><circle cx="36" cy="50" r="10" fill="#fff" stroke="#2b2350" stroke-width="3"/><circle cx="64" cy="50" r="10" fill="#fff" stroke="#2b2350" stroke-width="3"/><circle cx="38" cy="52" r="4" fill="#2b2350"/><circle cx="62" cy="52" r="4" fill="#2b2350"/><path d="M34 72q16 14 32 0" fill="#fff" stroke="#2b2350" stroke-width="3"/><path d="M44 74v6M56 74v6" stroke="#2b2350" stroke-width="3"/><path d="M72 28l8 6" stroke="#c0392b" stroke-width="4"/></svg>`}
-function build(){const f=$("field");f.innerHTML="";for(let i=0;i<6;i++){const h=document.createElement("div");h.className="hole";h.innerHTML=`<div class="z"><div class="word"></div>${zombieSVG()}</div><div class="dirt"></div>`;f.appendChild(h)}
- f.querySelectorAll(".z").forEach(z=>z.addEventListener("pointerdown",e=>{e.preventDefault();whack(z,e)}))}
-function start(l){lvl=l;items=shuf(l===1?L1:L2);qi=0;score=0;right=0;left=120;live=true;
- $("lv").textContent=l===1?"ด่าน 1":"ด่าน 2 ⚔";$("score").textContent=0;$("time").textContent=120;$("bar").style.transition="none";$("bar").style.width="100%";
- build();show("game");nextQ();clearInterval(tick);clearTimeout(popT);
- setTimeout(()=>{$("bar").style.transition="width 1s linear"},50);
- tick=setInterval(()=>{left--;$("time").textContent=left;$("bar").style.width=(left/120*100)+"%";if(left<=0)end()},1000);pop()}
-function nextQ(){if(qi>=items.length){end();return}const it=items[qi];
- $("q").innerHTML=it[0].replace("___","<b>?</b>");$("prog").textContent=(qi+1)+"/"+items.length;
- document.querySelectorAll(".z").forEach(z=>{z.classList.remove("up");z.dataset.w=""})}
-function pop(){if(!live)return;const it=items[qi];if(!it)return;
- const zs=[...document.querySelectorAll(".z")];const free=zs.filter(z=>!z.classList.contains("up"));
- if(free.length){const z=shuf(free)[0];
-  const hasCorrect=zs.some(x=>x.classList.contains("up")&&x.dataset.w===it[1]);
-  const w=(!hasCorrect&&Math.random()<.55)?it[1]:shuf(it[2])[0];
-  z.dataset.w=w;z.querySelector(".word").textContent=w;z.classList.remove("hit");z.classList.add("up");
-  const q=qi;setTimeout(()=>{if(qi===q)z.classList.remove("up")},1700+Math.random()*900)}
- popT=setTimeout(pop,520+Math.random()*380)}
-function fx(txt,good,ev){const f=$("field");const r=f.getBoundingClientRect();const x=ev.clientX-r.left,y=ev.clientY-r.top;
- const p=document.createElement("div");p.className="pts";p.textContent=txt;p.style.cssText=`left:${x-20}px;top:${y-30}px;color:${good?"#1fa95b":"#e11d1d"}`;f.appendChild(p);setTimeout(()=>p.remove(),800);
- if(good){for(let i=0;i<10;i++){const s=document.createElement("div");s.className="spark";s.textContent=["⭐","✨","🌟"][i%3];s.style.cssText=`left:${x}px;top:${y}px;--x:${(Math.random()-.5)*160}px;--y:${(Math.random()-.5)*160}px`;f.appendChild(s);setTimeout(()=>s.remove(),800)}}
- else{f.classList.remove("shake");void f.offsetWidth;f.classList.add("shake");setTimeout(()=>f.classList.remove("shake"),400)}}
-function whack(z,ev){if(!live||!z.classList.contains("up"))return;const it=items[qi];
- if(z.dataset.w===it[1]){score+=10;right++;sOK();fx("+10",true,ev);z.classList.add("hit");qi++;$("score").textContent=score;setTimeout(nextQ,350)}
- else{score=Math.max(0,score-5);sBAD();fx("−5",false,ev);z.classList.remove("up");$("score").textContent=score}}
-async function end(){if(!live)return;live=false;clearInterval(tick);clearTimeout(popT);
- const n=items.length,pts=Math.round(right/n*5),pass=lvl===1?right>=6:true;
- res[lvl]={s:pts,pts:score,right:right,pass:pass};
- $("rt").textContent=left<=0?"⏰ หมดเวลา!":"🎉 ตอบครบทุกข้อ!";
- $("rs").textContent=score+" คะแนน";
- $("rd").innerHTML=`ตอบถูก ${right}/${n} ข้อ · ได้ ${pts}/5 คะแนนสะสม<br>รวมทั้งเกม: <b>${total()} / 10</b>`+(lvl===1&&!pass?"<br>ต้องตอบถูกอย่างน้อย 6 ข้อเพื่อไปด่านที่ 2":"")+'<div class="note" id="sv">กำลังบันทึก...</div>';
- $("to2").classList.toggle("hide",!(lvl===1&&pass));show("result");
- const ok=await save({...me,score:total(),l1:res[1]?res[1].s:0,l2:res[2]?res[2].s:0,l1pts:res[1]?res[1].pts:0,l2pts:res[2]?res[2].pts:0,at:new Date().toISOString()});
- $("sv").textContent=ok?"✅ บันทึกคะแนนล่าสุดแล้ว":"✅ บันทึกในเครื่องนี้แล้ว"}
-$("tschool").onchange=async()=>{const s=$("tschool").value,t=$("tbl");if(!s){t.innerHTML="";return}
- t.textContent="กำลังโหลด...";const rows=await load(s);
- if(!rows.length){t.textContent="ยังไม่มีคะแนนของโรงเรียนนี้";return}
- rows.sort((a,b)=>String(a.cls||"").localeCompare(String(b.cls||""),'th',{numeric:true})||(+a.no)-(+b.no));
- const e=x=>String(x==null?"":x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
- t.innerHTML=`<table><tr><th>ชั้น</th><th>เลขที่</th><th>ชื่อ-สกุล</th><th>ด่าน 1</th><th>ด่าน 2</th><th>รวม /10</th><th>เวลา</th></tr>`+rows.map(r=>`<tr><td>${e(r.cls)}</td><td>${e(r.no)}</td><td>${e(r.fn)} ${e(r.ln)}</td><td>${e(r.l1)}/5</td><td>${e(r.l2)}/5</td><td><b>${e(r.score)}</b></td><td>${r.at?new Date(r.at).toLocaleString("th-TH",{dateStyle:"short",timeStyle:"short"}):""}</td></tr>`).join("")+"</table>"};
-</script></body></html>
+var SCHOOLS=["โรงเรียนสารสาสน์วิเทศสุวรรณภูมิ","โรงเรียนสารสาสน์วิเทศสุราษฎร์ธานี","โรงเรียนสารสาสน์วิเทศชลบุรี","โรงเรียนสารสาสน์วิเทศบูรพา","โรงเรียนสารสาสน์วิเทศเพชรบุรี","โรงเรียนสารสาสน์วิเทศน์ออนซี"];
+// [sentence with ___, answer, distractors split by |]
+var S1=[
+["The clowns ___ laughing.","are","is|am|be|do|was"],
+["Dad is ___ a hot dog.","eating","eat|eats|ate|eaten|to eat"],
+["The lion is ___.","roaring","roar|roars|roared|to roar|roarred"],
+["The seal is ___ with a ball.","playing","play|plays|played|to play|plaing"],
+["The crowd ___ clapping.","is","are|am|be|do|were"],
+["The elephant is ___ on two legs.","standing","stand|stands|stood|to stand|standed"],
+["The baby is ___.","crying","cry|cries|cried|cring|to cry"],
+["The man is ___ a kite.","flying","fly|flies|flew|flyed|to fly"],
+["The zebras ___ drinking water.","are","is|am|be|does|was"],
+["The family is ___ their bikes.","riding","ride|rides|rode|rideing|to ride"],
+["The old man is ___ on the sofa.","lying","lie|lies|lay|lyeing|to lie"],
+["The family members ___ brushing their teeth.","are","is|am|be|do|was"]
+];
+// ด่าน 2: s=บอกเล่า n=ปฏิเสธ y=Yes/No Q&A w=Wh-Q&A (สุ่ม 3+2+3+2 = 10 ข้อ แล้วสลับลำดับ)
+var S2=[
+["She ___ a blue dress.","is wearing","wearing|wears|are wearing|is wear|am wearing","s"],
+["They ___ ice cream.","are eating","is eating|eating|am eating|eats|are eat","s"],
+["I ___ my homework now.","am doing","is doing|are doing|doing|do|am do","s"],
+["The baby ___ in his bedroom.","is playing","are playing|am playing|playing|plays|is play","s"],
+["Nick and I ___ for new clothes.","are shopping","is shopping|am shopping|shopping|shop|are shop","s"],
+["My mother ___ dinner right now.","is cooking","are cooking|am cooking|cooking|cooks|is cook","s"],
+["It ___ today. (negative)","isn’t raining","not raining|doesn’t raining|aren’t raining|isn’t rain|no raining","n"],
+["I ___ German. (negative)","’m not learning","amn’t learning|isn’t learning|not learn|don’t learning|aren’t learning","n"],
+["My mom ___ breakfast. (negative)","isn’t having","aren’t having|am not having|not having|doesn’t having|isn’t have","n"],
+["She ___ the piano right now. (negative)","isn’t playing","aren’t playing|am not playing|not playing|doesn’t playing|isn’t play","n"],
+["The two boys ___ a picture. (negative)","aren’t painting","isn’t painting|not painting|doesn’t paint|aren’t paint|am not painting","n"],
+["My friend and I ___ to music. (negative)","aren’t listening","isn’t listening|am not listen|not listening|don’t listening|aren’t listen","n"],
+["___ you sleeping? – No, I’m not. I’m watching TV.","Are","Is|Am|Do|Does|Be","y"],
+["___ your sister drinking milk? – No, she isn’t.","Is","Are|Am|Do|Does|Be","y"],
+["___ they walking to school? – No, they aren’t.","Are","Is|Am|Do|Does|Be","y"],
+["Is the sun shining? – Yes, it ___.","is","are|am|does|do|be","y"],
+["Are you using a pencil? – Yes, I ___.","am","is|are|do|be|does","y"],
+["Is your teacher talking? – No, she ___.","isn’t","aren’t|doesn’t|not|don’t|amn’t","y"],
+["What ___ you doing now? – I’m studying English.","are","is|am|do|does|be","w"],
+["Who ___ sitting next to you? – My classmate.","is","are|am|do|does|be","w"],
+["Where are they going? – They are ___ to the ocean.","going","go|goes|went|to go|goeing","w"],
+["How are they traveling? – They are traveling ___ car.","by","on|with|at|in|to","w"],
+["Why is she waiting? – She is waiting ___ the subway is late.","because","but|so|and|or|if","w"]
+];
+function pick2(){var by={};S2.forEach(function(q){(by[q[3]]=by[q[3]]||[]).push(q)});var n={s:3,n:2,y:3,w:2},r=[];for(var k in n)r=r.concat(shuffle(by[k]).slice(0,n[k]));return shuffle(r).map(function(q){return q.slice(0,3).concat([2])})}
+var $=function(i){return document.getElementById(i)};
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function show(id){["vLogin","vGame","vStage","vClear","vOver","vDash"].forEach(function(v){$(v).classList.toggle("hidden",v!==id)})}
+SCHOOLS.forEach(function(s,i){["sc","fs"].forEach(function(id){var o=document.createElement("option");o.value=i;o.textContent=s;$(id).appendChild(o)})});
+
+// sound
+var AC=null;
+function beep(f,d,t,v){try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();var o=AC.createOscillator(),g=AC.createGain();o.type=t||"sine";o.frequency.value=f;g.gain.value=v||.15;o.connect(g);g.connect(AC.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+d);o.stop(AC.currentTime+d)}catch(e){}}
+function sOk(){beep(660,.12);setTimeout(function(){beep(990,.2)},90)}
+function sBad(){beep(150,.3,"sawtooth",.2)}
+function sEnd(){[523,659,784,1047].forEach(function(f,i){setTimeout(function(){beep(f,.25)},i*130)})}
+
+// state
+var P=null,G=null;
+$("bRules").onclick=function(){$("rules").classList.toggle("hidden")};
+$("bStart").onclick=function(){
+  var fn=$("fn").value.trim(),ln=$("ln").value.trim(),cl=$("cl").value.trim(),no=$("no").value.trim();
+  if(!fn||!ln||!cl||!no){$("lerr").textContent="กรุณากรอกข้อมูลให้ครบทุกช่อง";return}
+  $("lerr").textContent="";
+  P={fn:fn,ln:ln,cl:cl,no:no,sc:+$("sc").value};
+  beep(440,.05);startGame();
+};
+function startGame(){
+  G={t:120,pts:0,qs:S1.map(function(q){return q.concat([1])}),st:1,i:0,right:0,first:true,timer:null,run:false,holes:[]};
+  stageIntro(1);
+}
+function stageIntro(n){
+  show("vStage");
+  $("stT").textContent=n==1?"ด่านที่ 1: Vocabulary & Verbs":"ด่านที่ 2: Boss Battle – Grammar";
+  $("stD").textContent=n==1?"เติมคำที่ถูกต้องให้ประโยค Present Progressive":"เลือกรูปประโยคที่ถูกต้อง: บอกเล่า ปฏิเสธ และคำถาม";
+  $("bGo").onclick=function(){show("vGame");tick();nextQ()};
+}
+function tick(){
+  clearInterval(G.timer);G.t=120;$("hTime").textContent="⏱ 120";$("tbar").style.width="100%";G.timer=setInterval(function(){G.t--;$("hTime").textContent="⏱ "+G.t;$("tbar").style.width=(G.t/120*100)+"%";if(G.t<=0)endGame()},1000);
+}
+function nextQ(){
+  if(G.i>=G.qs.length){stageDone();return}
+  var q=G.qs[G.i];G.first=true;G.run=true;
+  $("hStage").textContent="ด่าน "+q[3]+" • ข้อ "+(G.i+1)+"/"+G.qs.length;
+  $("hScore").textContent="⭐ "+G.pts;
+  $("qtext").innerHTML=q[0].replace("___","<u>&nbsp;&nbsp;?&nbsp;&nbsp;</u>");
+  var opts=shuffle([q[1]].concat(shuffle(q[2].split("|")).slice(0,5)));
+  var f=$("field");f.innerHTML="";G.holes.forEach(clearTimeout);G.holes=[];
+  opts.forEach(function(w,i){
+    var h=document.createElement("div");h.className="hole";
+    h.innerHTML='<div class="dirt"></div><div class="zomb"><span class="w"></span><span class="z">🧟</span></div>';
+    h.querySelector(".w").textContent=w;
+    h.onpointerdown=function(e){hit(h,w,q,e)};
+    f.appendChild(h);cycle(h,i);
+  });
+}
+function cycle(h,i){
+  var z=h.querySelector(".zomb");
+  function up(){if(!G||!G.run)return;z.classList.add("up");G.holes.push(setTimeout(down,1500+Math.random()*1200))}
+  function down(){z.classList.remove("up");G.holes.push(setTimeout(up,350+Math.random()*900))}
+  G.holes.push(setTimeout(up,150+i*160+Math.random()*400));
+}
+function hit(h,w,q,e){
+  if(!G||!G.run)return;
+  var z=h.querySelector(".zomb");if(!z.classList.contains("up"))return;
+  if(w===q[1]){
+    G.run=false;G.pts+=10;if(G.first)G.right++;sOk();sparkle(e.clientX,e.clientY);
+    $("qtext").innerHTML=q[0].replace("___","<u>"+w+"</u>");$("hScore").textContent="⭐ "+G.pts;
+    z.classList.remove("up");
+    G.i++;G.holes.forEach(clearTimeout);
+    setTimeout(function(){
+      nextQ();
+    },700);
+  }else{
+    G.first=false;G.pts-=5;sBad();$("hScore").textContent="⭐ "+G.pts;
+    h.classList.remove("hitbad");void h.offsetWidth;h.classList.add("hitbad");
+    var f=$("flash");f.classList.remove("on");void f.offsetWidth;f.classList.add("on");
+  }
+}
+function sparkle(x,y){
+  for(var i=0;i<12;i++){var s=document.createElement("div");s.className="star";s.textContent=i%2?"⭐":"✨";s.style.left=x+"px";s.style.top=y+"px";
+  var a=Math.random()*6.28,d=40+Math.random()*70;s.style.setProperty("--dx",Math.cos(a)*d+"px");s.style.setProperty("--dy",Math.sin(a)*d+"px");document.body.appendChild(s);setTimeout(function(el){el.remove()}.bind(null,s),750)}
+}
+function stageDone(){
+  clearInterval(G.timer);G.run=false;G.holes.forEach(clearTimeout);
+  if(G.st==1){sEnd();show("vClear");$("cSub").textContent="ตอบถูกตั้งแต่ครั้งแรก "+G.right+" / "+G.qs.length+" ข้อ • คะแนนเกม "+G.pts}else endGame();
+}
+$("bNext").onclick=function(){G.st=2;G.qs=pick2();G.i=0;show("vGame");tick();nextQ()};
+function endGame(){
+  if(!G||G.over)return;G.over=true;G.run=false;clearInterval(G.timer);G.holes.forEach(clearTimeout);sEnd();
+  show("vOver");
+  $("oScore").textContent="⭐ "+G.pts+" คะแนน";
+  $("oSub").textContent="ตอบถูกตั้งแต่ครั้งแรก "+G.right+" / 22 ข้อ"+(G.t<=0?" (หมดเวลา)":"");
+  $("oSave").textContent="กำลังบันทึกคะแนน...";
+  save(G.right,G.pts);
+}
+$("bAgain").onclick=function(){startGame()};
+
+// storage (shared db)
+function hash(s){var h=5381;for(var i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return "s"+(h>>>0).toString(36)}
+function key(){return hash([P.sc,P.cl.toLowerCase(),P.no,P.fn.toLowerCase(),P.ln.toLowerCase()].join("|"))}
+async function getDb(){try{return await claude.use("db")}catch(e){return null}}
+async function save(score,pts){
+  try{
+    var db=await getDb();
+    if(!db){$("oSave").textContent="⚠️ บันทึกคะแนนไม่ได้ (กรุณาเปิดลิงก์ผ่านบัญชี Claude)";return}
+    await db.doc("scores/"+key()).set({fn:P.fn,ln:P.ln,cl:P.cl,no:P.no,sc:P.sc,score:score,pts:pts,at:Date.now()});
+    $("oSave").textContent="✅ บันทึกคะแนนล่าสุดแล้ว: "+score+" / 22";
+  }catch(e){$("oSave").textContent="⚠️ บันทึกคะแนนไม่สำเร็จ ลองเล่นใหม่อีกครั้ง"}
+}
+
+// teacher
+(function(){var ph=document.createElement("option");ph.value="";ph.textContent="-- เลือกโรงเรียน --";$("fs").insertBefore(ph,$("fs").firstChild);$("fs").value=""})();
+$("bTeacher").onclick=function(){$("tb").innerHTML="";$("dInfo").textContent="กรุณาเลือกโรงเรียนเพื่อดูคะแนน";show("vDash")};
+$("bBack2").onclick=function(){show("vLogin")};
+$("fs").onchange=function(){loadDash()};
+async function loadDash(){
+  var tb=$("tb");tb.innerHTML="";$("dInfo").textContent="กำลังโหลด...";
+  try{
+    var db=await getDb();if(!db){$("dInfo").textContent="เปิดดูข้อมูลไม่ได้ (ต้องเข้าผ่านบัญชี Claude)";return}
+    if($("fs").value===""){$("dInfo").textContent="กรุณาเลือกโรงเรียนเพื่อดูคะแนน";return}var sc=+$("fs").value;
+    var snap=await db.collection("scores").where("sc","==",sc).get();
+    var rows=[];snap.forEach(function(d){rows.push(d.data())});
+    rows.sort(function(a,b){return a.cl.localeCompare(b.cl,"th")||(+a.no)-(+b.no)});
+    $("dInfo").textContent=SCHOOLS[sc]+" • "+rows.length+" คน";
+    rows.forEach(function(r){var tr=document.createElement("tr");
+      [r.cl,r.no,r.fn+" "+r.ln,r.score+" / 22",new Date(r.at).toLocaleString("th-TH",{dateStyle:"short",timeStyle:"short"})].forEach(function(v){var td=document.createElement("td");td.textContent=v;tr.appendChild(td)});
+      tb.appendChild(tr)});
+    if(!rows.length){$("dInfo").textContent+=" (ยังไม่มีข้อมูล)"}
+  }catch(e){$("dInfo").textContent="โหลดข้อมูลไม่สำเร็จ"}
+}
+</script>
+</body>
+</html>
